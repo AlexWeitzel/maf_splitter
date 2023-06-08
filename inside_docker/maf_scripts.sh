@@ -14,15 +14,7 @@ split_up_mafs() {
 
 
     #rest of code
-    #mkdir /data/temporary_output
     echo "Running: mafsInRegion $flags -outDir $flago /data/$flagi*.maf" #leaving the /data/ roots us at the base dir, set by docker
-
-    #concat_maf_subsets $flagf
-    #echo there $flagf here
-
-    #touch /data/temporary_output/foo
-
-    #rm -r /data/temporary_output
 }
 
 concatonate_maf_subsets() {
@@ -46,9 +38,7 @@ maf_lengths() {
     touch /data/$output_file
     echo -e "peak_ID\tpeak_length" > $output_file
     for file in $folder*.maf; do
-        #echo $file;
         name=`echo $file | awk -F'/' '{print $NF}' | cut -d'.' -f1`;
-        #echo $name;
         var=`cat $file | sed 's/+/-/g' | grep mm10 | cut -d'-' -f1 | awk -F' ' '{print $NF}' | awk '{sum+=$1} END{print sum}'`
         echo -e "$name\t$var" >> $output_file
 

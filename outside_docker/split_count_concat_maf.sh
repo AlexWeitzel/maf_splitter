@@ -18,8 +18,8 @@ main () {
 
     #start_docker_image 
     local kent_container='my_kent'
-    local script_source='./scripts/inside_docker/maf_scripts.sh'
-    source ./scripts/outside_docker/docker_utils.sh #contains start_docker_image and d_wrap
+    local script_source='./scripts/maf_splitter/inside_docker/maf_scripts.sh'
+    source ./scripts/maf_splitter/outside_docker/docker_utils.sh #contains start_docker_image and d_wrap
 
     start_docker_image $kent_container "50bc0194602d" 
     echo "break me"
