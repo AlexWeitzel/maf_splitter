@@ -12,7 +12,7 @@ main () {
 
     start_docker_image $phast_container "e3d0affb583b" 
 
-    d_wrap $phast_container $script_source "$command"
+    d_wrap_root $phast_container $script_source "$command"
 
 
     docker stop $phast_container

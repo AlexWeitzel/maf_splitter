@@ -23,3 +23,13 @@ d_wrap() {
         source $script_source;
         $command"    
 }
+
+d_wrap_root() {
+    container_ID=$1
+    script_source=$2
+    command=$3
+    #echo $command
+    docker exec -w /data/ -u root $container_ID bash -c "
+        source $script_source;
+        $command"    
+}
