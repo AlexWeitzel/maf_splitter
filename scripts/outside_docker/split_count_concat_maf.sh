@@ -1,5 +1,5 @@
 #!/bin/bash
-# ./scripts/outside_docker/test.sh -s subset -i ./scripts/inside_docker/ -o ./chr5_test_mafs/ -c ./count_data_rimmatime.txt -t ./look_rimma.maf
+#./scripts/outside_docker/split_count_concat_maf.sh -s subset -i ./scripts/inside_docker/ -o ./chr5_test_mafs/ -c ./output/peak_maf_size.txt -t ./output/concat.maf
 
 main () {
     while getopts "s:i:o:c:t:" opt; do
@@ -15,8 +15,6 @@ main () {
     shift $((OPTIND-1))
     echo $flags $flagi $flago $flagc $flagt
 
-
-    local in_dir='./chr5_test_mafs/'
 
     #start_docker_image 
     local kent_container='my_kent'
