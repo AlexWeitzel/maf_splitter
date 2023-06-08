@@ -1,0 +1,8 @@
+#the goal of this .gitignore file is to have
+#files (like bedfiles, etc) in the directory that can
+#be modified and not committed to the git repo
+
+/files/
+/output/
+/chr5_test_mafs/
+.DS_Store
