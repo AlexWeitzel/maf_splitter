@@ -14,7 +14,7 @@ split_up_mafs() {
 
 
     #rest of code
-    echo "Running: mafsInRegion $flags -outDir $flago /data/$flagi*.maf" #leaving the /data/ roots us at the base dir, set by docker
+    mafsInRegion $flags -outDir $flago /data/$flagi*.maf #leaving the /data/ roots us at the base dir, set by docker
 }
 
 concatonate_maf_subsets() {
