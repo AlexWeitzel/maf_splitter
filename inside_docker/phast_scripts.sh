@@ -22,8 +22,9 @@ iterate_phyloP() {
     export ref=mm10
     whoami
     for chr in $chromList; do
-    echo "cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed";
-        sudo cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed;
+        echo "cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed";
+        touch $out_dir$chr.bed
+        cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed;
     done
 
     
