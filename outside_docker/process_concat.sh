@@ -1,6 +1,6 @@
 #!/bin/bash
 #./scripts/outside_docker/split_count_concat_maf.sh -s subset -i ./scripts/inside_docker/ -o ./chr5_test_mafs/ -c ./output/peak_maf_size.txt -t ./output/concat.maf
-
+#
 main () {
     while getopts "g:o:t:p:s:f:d:" opt; do
         case $opt in
