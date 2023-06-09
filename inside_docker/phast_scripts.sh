@@ -5,3 +5,28 @@ say_a_word() {
     local print_me=$1
     echo $print_me
 }
+
+iterate_phyloP() {
+    #inputs are flagg (.gp file), flago (output_dir of post_concat chr split), flagt (concat.maf location), flagp (prefix)
+    local GP=$1
+    local out_dir=$2
+    local concat=$3 #location of concat file
+    local prefix=$4 #prefix
+    local subtree=$5 #subtree
+    local feature_file=$6   #feature
+    local mod_file=$7       #neutral_mod_file.mod
+
+
+    #rest of code
+    export chromList=`cat $GP | cut -f2 | sort -u | awk '{printf $1" " }'`
+    export ref=mm10
+
+    for chr in $chromList; do
+        cat $feature_file | grep $chr > $out_dir./$chr.bed;
+    done
+
+    
+    for chr in $chromList; do
+        phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir/$chr.bed $mod_file $out_dir/$chr.maf > $out_dir./subtree_features_$chr;
+    done
+}

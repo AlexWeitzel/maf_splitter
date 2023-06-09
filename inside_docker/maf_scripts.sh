@@ -29,9 +29,22 @@ concatonate_maf_subsets() {
     for file in $input_directory*.maf; do
         tail -n +2 "$file" >> /data/$file_name
     done
-
-    
 }
+
+chrom_split() {
+    #inputs are flagg (.gp file), flago (output_dir of post_concat chr split), flagt (concat.maf location), flagp (prefix)
+    local GP=$1
+    local out_dir=$2
+    local concat=$3 #location of concat file
+    local prefix=$4 #prefix
+
+
+    #rest of code
+    export chromList=`cat $GP | cut -f2 | sort -u | awk '{printf $1" " }'`
+    export ref=mm10
+    mafSplit -byTarget -useFullSequenceName /dev/null $out_dir $concat
+}
+
 maf_lengths() {
     local folder=$1
     local output_file=$2
