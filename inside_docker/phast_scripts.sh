@@ -22,11 +22,11 @@ iterate_phyloP() {
     export ref=mm10
 
     for chr in $chromList; do
-        echo "cat $feature_file | grep $chr > $out_dir./$chr.bed";
+        cat $feature_file | grep $chr > $out_dir./$chr.bed;
     done
 
     
     for chr in $chromList; do
-        echo "phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir/$chr.bed $mod_file $out_dir/$chr.maf > $out_dir./subtree_features_$chr";
+        phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir/$chr.bed $mod_file $out_dir./$chr.maf > $out_dir./subtree_features_$chr;
     done
 }
