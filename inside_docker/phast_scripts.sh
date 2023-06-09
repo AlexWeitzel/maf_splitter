@@ -20,16 +20,16 @@ iterate_phyloP() {
     #rest of code
     export chromList=`cat $GP | cut -f2 | sort -u | awk '{printf $1" " }'`
     export ref=mm10
-
+    whoami
     for chr in $chromList; do
-    echo "cat $feature_file | grep $chr$'\t' > $out_dir./$chr.bed";
-        cat $feature_file | grep $chr$'\t' > $out_dir./$chr.bed;
+    echo "cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed";
+        sudo cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed;
     done
 
     
     for chr in $chromList; do
-        echo "phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir./$chr.bed $mod_file $out_dir./$chr.maf > $out_dir./subtree_features_$chr";
+        echo "phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir$chr.bed $mod_file $out_dir$chr.maf > $out_dir./subtree_features_$chr";
 
-        phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir./$chr.bed $mod_file $out_dir./$chr.maf > $out_dir./subtree_features_$chr;
+        phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir$chr.bed $mod_file $out_dir$chr.maf > $out_dir./subtree_features_$chr;
     done
 }
