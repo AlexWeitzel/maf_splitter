@@ -38,7 +38,7 @@ main () {
     #d_wrap $kent_container $script_source "maf_lengths $flago $flagc"
     #d_wrap $kent_container $script_source "both_maf_lengths $flago $flagc"
     
-    d_wrap $kent_container $maf_script_source "chrom_split $flagg $flago $flagt $flagp"
+    #d_wrap $kent_container $maf_script_source "chrom_split $flagg $flago $flagt $flagp"
     d_wrap_root $phast_container $phast_script_source "iterate_phyloP $flagg $flago $flagt $flagp $flags $flagf $flagd"
 
 
