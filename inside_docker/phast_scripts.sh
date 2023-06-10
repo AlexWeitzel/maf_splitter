@@ -25,7 +25,7 @@ iterate_phyloP() {
     echo $subtree > $out_dir$subtree/log_file.txt
 
     for chr in $chromList; do
-        touch $out_dir$chr.bed
+        touch $out_dir$subtree/$chr.bed;
         cat $feature_file | grep $chr$'\t' > $out_dir$subtree/$chr.bed;
     done
     mkdir $out_dir$subtree
