@@ -25,12 +25,13 @@ iterate_phyloP() {
         touch $out_dir$chr.bed
         cat $feature_file | grep $chr$'\t' > $out_dir$chr.bed;
     done
-    touch $out_dir./log_file.txt
-    echo $subtree > $out_dir./log_file.txt
+    mkdir $out_dir$subtree
+    touch $out_dir$subtree/log_file.txt
+    echo $subtree > $out_dir$subtree/log_file.txt
     
     for chr in $chromList; do
         #echo "phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir$chr.bed $mod_file $out_dir$chr.maf > $out_dir./subtree_features_$chr";
 
-        phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir$chr.bed $mod_file $out_dir$chr.maf > $out_dir./subtree_features_$chr;
+        phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir$chr.bed $mod_file $out_dir$chr.maf > $out_dir$subtree/subtree_features_$chr;
     done
 }
