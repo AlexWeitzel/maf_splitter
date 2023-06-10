@@ -21,6 +21,7 @@ iterate_phyloP() {
     export chromList=`cat $GP | cut -f2 | sort -u | awk '{printf $1" " }'`
     export ref=mm10
     
+    mkdir $out_dir$subtree
     touch $out_dir$subtree/log_file.txt
     echo $subtree > $out_dir$subtree/log_file.txt
 
@@ -28,7 +29,7 @@ iterate_phyloP() {
         touch $out_dir$subtree/$chr.bed;
         cat $feature_file | grep $chr$'\t' > $out_dir$subtree/$chr.bed;
     done
-    mkdir $out_dir$subtree
+    
     
     
     for chr in $chromList; do
