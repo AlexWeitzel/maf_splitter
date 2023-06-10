@@ -2,7 +2,7 @@
 #./scripts/outside_docker/split_count_concat_maf.sh -s subset -i ./scripts/inside_docker/ -o ./chr5_test_mafs/ -c ./output/peak_maf_size.txt -t ./output/concat.maf
 #
 main () {
-    while getopts "g:o:t:p:s:f:d:" opt; do
+    while getopts "g:o:t:p:s:f:d:c:" opt; do
         case $opt in
             g) flagg=$OPTARG ;;     #gp for chrom_IDs
             o) flago=$OPTARG ;;     #output (re_split_maf) dir
@@ -11,16 +11,18 @@ main () {
             s) flags=$OPTARG ;;     #subtree
             f) flagf=$OPTARG ;;     #total feature bed file
             d) flagd=$OPTARG ;;     #named tree modfile
+            c) flagc=$OPTARG ;;     #this is a custom name for the phast container, this allows me to run many docker instances at once as long as they have unique names
             \?) echo "Invalid option: -$OPTARG" >&2 ;;
         esac
     done
     shift $((OPTIND-1))
-    echo $flagg $flago $flagt $flagp $flags $flagf
+    echo $flagg $flago $flagt $flagp $flags $flagf $flagd $flagc
 
 
     #start_docker_image 
     local kent_container='my_kent'
-    local phast_container='my_phast'
+    #local phast_container='my_phast'
+    local phast_container=$flagc
     local maf_script_source='./scripts/maf_splitter/inside_docker/maf_scripts.sh'
     local phast_script_source='./scripts/maf_splitter/inside_docker/phast_scripts.sh'
 
