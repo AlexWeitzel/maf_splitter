@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #./scripts/outside_docker/split_count_concat_maf.sh -s subset -i ./scripts/inside_docker/ -o ./chr5_test_mafs/ -c ./output/peak_maf_size.txt -t ./output/concat.maf
 
 main () {
@@ -16,21 +17,19 @@ main () {
     echo $flags $flagi $flago $flagc $flagt
 
 
-    #start_docker_image 
+    #start_docker_image
     local kent_container='my_kent'
     local script_source='./scripts/maf_splitter/inside_docker/maf_scripts.sh'
     source ./scripts/maf_splitter/outside_docker/docker_utils.sh #contains start_docker_image and d_wrap
 
-    start_docker_image $kent_container "50bc0194602d" 
+    start_docker_image $kent_container "50bc0194602d"
     echo "break me"
 
-   
     d_wrap $kent_container $script_source "say_a_word $flags"
     d_wrap $kent_container $script_source "split_up_mafs -s $flags -i $flagi -o $flago" #use -s subset_bed -s in_dir -o out_dir
     d_wrap $kent_container $script_source "concatonate_maf_subsets $flagt $flago"
     #d_wrap $kent_container $script_source "maf_lengths $flago $flagc"
     d_wrap $kent_container $script_source "both_maf_lengths $flago $flagc"
-
 
     docker stop $kent_container
     docker rm $kent_container

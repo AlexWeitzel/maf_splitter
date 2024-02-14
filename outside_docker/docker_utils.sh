@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #starts docker image, and can run commands sourced from another location within the docker image
 
 start_docker_image() {
@@ -21,7 +22,7 @@ d_wrap() {
     #echo $command
     docker exec -w /data/ $container_ID bash -c "
         source $script_source;
-        $command"    
+        $command"
 }
 
 d_wrap_root() {
@@ -31,5 +32,5 @@ d_wrap_root() {
     #echo $command
     docker exec -w /data/ -u root $container_ID bash -c "
         source $script_source;
-        $command"    
+        $command"
 }
