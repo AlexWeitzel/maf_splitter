@@ -12,7 +12,6 @@ split_up_mafs() {
     done
     shift $((OPTIND-1))
 
-
     #rest of code
     mafsInRegion $flags -outDir $flago /data/$flagi*.maf #leaving the /data/ roots us at the base dir, set by docker
 }
@@ -31,16 +30,21 @@ concatonate_maf_subsets() {
     done
 }
 
+gen_chrome_list() {
+    local GP="$1"
+    cat "$GP" | cut -f2 | sort -u | awk '{printf $1" " }'
+}
+
 chrom_split() {
     #inputs are flagg (.gp file), flago (output_dir of post_concat chr split), flagt (concat.maf location), flagp (prefix)
-    local GP=$1
+    local GP="$1"
     local out_dir=$2
     local concat=$3 #location of concat file
     local prefix=$4 #prefix
 
 
     #rest of code
-    export chromList=`cat $GP | cut -f2 | sort -u | awk '{printf $1" " }'`
+    export chromList=`gen_chrome_list "$GP"`
     export ref=mm10
     mafSplit -byTarget -useFullSequenceName /dev/null $out_dir $concat
 }
@@ -57,8 +61,6 @@ maf_lengths() {
 
     done
 }
-
-
 
 both_maf_lengths() {
     local folder=$1

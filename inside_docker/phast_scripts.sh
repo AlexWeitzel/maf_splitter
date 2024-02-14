@@ -20,7 +20,7 @@ iterate_phyloP() {
     #rest of code
     export chromList=`cat $GP | cut -f2 | sort -u | awk '{printf $1" " }'`
     export ref=mm10
-    
+
     mkdir $out_dir$subtree
     touch $out_dir$subtree/log_file.txt
     echo $subtree > $out_dir$subtree/log_file.txt
@@ -29,9 +29,7 @@ iterate_phyloP() {
         touch $out_dir$subtree/$chr.bed;
         cat $feature_file | grep $chr$'\t' > $out_dir$subtree/$chr.bed;
     done
-    
-    
-    
+
     for chr in $chromList; do
         #echo "phyloP --method LRT --subtree $subtree --mode CONACC --features $out_dir$chr.bed $mod_file $out_dir$chr.maf > $out_dir./subtree_features_$chr";
 
